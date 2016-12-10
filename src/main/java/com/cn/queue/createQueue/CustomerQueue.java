@@ -11,9 +11,8 @@ import com.cn.queue.impl.QueueFactoryImpl;
 
 public class CustomerQueue {
 
-    public void createCustomerQueue()
-    {
-        QueueFactoryImpl qf=QueueFactoryImpl.getInstance();
+    public void createCustomerQueue() {
+        QueueFactoryImpl qf = QueueFactoryImpl.getInstance();
         System.out.println(qf.createQueue("生产者队列"));
         System.out.println("消费者队列加载完成");
 

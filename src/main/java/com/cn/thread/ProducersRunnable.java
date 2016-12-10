@@ -14,22 +14,28 @@ import java.util.Date;
 
 
 class ProducersRunnable implements Runnable {
-    QueueFactoryImpl queues=QueueFactoryImpl.getInstance();
-    public  void run() {
-        int i=0;
-        while (true)
-        {
-            ProducersQueuePojo producersQueuePojo=new ProducersQueuePojo();
+    private static String version;
+    QueueFactoryImpl queues = QueueFactoryImpl.getInstance();
+
+    public ProducersRunnable(String version) {
+        this.version = version;
+    }
+
+    public void run() {
+        int i = 0;
+        while (true) {
+            ProducersQueuePojo producersQueuePojo = new ProducersQueuePojo();
             producersQueuePojo.setQueueTheme("warmtheme1");
             producersQueuePojo.setQueueAuthor("tangjing");
-            producersQueuePojo.setQueueContext("今天是"+new Date());
+            producersQueuePojo.setQueueContext("今天是" + new Date());
             producersQueuePojo.setQueueCreateTime((System.currentTimeMillis()));
             producersQueuePojo.setNum((int) (Math.random() * 100));
             producersQueuePojo.setWarnTheme("我是谁");
             producersQueuePojo.setWarnRule(Integer.toString(i++));
             producersQueuePojo.setWarnNum(producersQueuePojo.getNum());
-            System.out.println("生产者队列新增:"+producersQueuePojo.getQueueTheme()+",date:"+System.currentTimeMillis()+",当前队列中元素数:"+queues.getQueueSizeByQueueName("生产者队列"));
-            queues.offer("生产者队列",producersQueuePojo);
+            System.out.println("生产者队列新增:" + producersQueuePojo.getQueueTheme() + ",date:" + System.currentTimeMillis() + ",当前队列中元素数:" + queues.getQueueSizeByQueueName("生产者队列"));
+            producersQueuePojo.setAuthor(version);
+            queues.offer("生产者队列", producersQueuePojo);
         }
     }
 }

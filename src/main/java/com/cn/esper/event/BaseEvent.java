@@ -12,6 +12,25 @@ public class BaseEvent {
     private String warnTheme;
     private String warnRule;
     private int warnNum;
+    private String author;
+    private String executiver;
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getExecutiver() {
+        return executiver;
+    }
+
+    public void setExecutiver(String executiver) {
+        this.executiver = executiver;
+    }
+
 
     public String getWarnTheme() {
         return warnTheme;

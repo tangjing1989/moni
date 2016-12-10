@@ -25,12 +25,11 @@ public class QueueFactoryImpl implements IQueueFactoryImpl {
      *
      * @return
      */
-    public static  QueueFactoryImpl getInstance() {
+    public static QueueFactoryImpl getInstance() {
         if (queueFactoryImpl == null) {
             queueFactoryImpl = new QueueFactoryImpl();
-            return  queueFactoryImpl;
-        }
-            else
+            return queueFactoryImpl;
+        } else
             return queueFactoryImpl;
     }
 
@@ -42,17 +41,17 @@ public class QueueFactoryImpl implements IQueueFactoryImpl {
             ArrayBlockingQueue<BaseQueuePojo> arrayBlockingQueue = new ArrayBlockingQueue<BaseQueuePojo>(100);
             QMap.put(queueName, arrayBlockingQueue);
             return true;
-        }
-        else
+        } else
             return false;
     }
 
     /**
      * 通过名称获取Queue
+     *
      * @param queueName
      * @return
      */
-    public BlockingQueue<BaseQueuePojo> getQueueByName(String queueName){
+    public BlockingQueue<BaseQueuePojo> getQueueByName(String queueName) {
         return QMap.get(queueName);
     }
 

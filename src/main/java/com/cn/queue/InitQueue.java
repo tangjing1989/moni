@@ -12,21 +12,20 @@ import com.cn.queue.createQueue.ProducerQueue;
 
 public class InitQueue {
 
-    public void initQueue()
-    {
-        CustomerQueue customerQueue =new CustomerQueue();
+    public static void main(String[] args) {
+        CustomerQueue customerQueue = new CustomerQueue();
         customerQueue.createCustomerQueue();
 
-        ProducerQueue producerQueue=new ProducerQueue();
+        ProducerQueue producerQueue = new ProducerQueue();
         producerQueue.createProducerQueue();
 
     }
 
-    public static void main(String[] args) {
-        CustomerQueue customerQueue =new CustomerQueue();
+    public void initQueue() {
+        CustomerQueue customerQueue = new CustomerQueue();
         customerQueue.createCustomerQueue();
 
-        ProducerQueue producerQueue=new ProducerQueue();
+        ProducerQueue producerQueue = new ProducerQueue();
         producerQueue.createProducerQueue();
 
     }

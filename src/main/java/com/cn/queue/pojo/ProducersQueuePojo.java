@@ -7,9 +7,10 @@ package com.cn.queue.pojo;
  * Time:下午5:17
  */
 
-public class ProducersQueuePojo extends BaseQueuePojo{
+public class ProducersQueuePojo extends BaseQueuePojo {
 
     private int num;
+
 
     public int getNum() {
         return num;

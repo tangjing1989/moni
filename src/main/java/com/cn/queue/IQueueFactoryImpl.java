@@ -9,7 +9,7 @@ import com.cn.queue.pojo.BaseQueuePojo;
  * Date:16/12/2
  * Time:下午5:26
  */
-public interface IQueueFactoryImpl  {
+public interface IQueueFactoryImpl {
 
     boolean createQueue(String queueName);
 

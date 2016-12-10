@@ -1,6 +1,6 @@
 package com.cn.queue.pojo;
 
-import com.cn.queue.esper.event.BaseEvent;
+import com.cn.esper.event.BaseEvent;
 
 /**
  * Describe:队列中实体
@@ -16,6 +16,7 @@ public class BaseQueuePojo extends BaseEvent {
     private String queueContext;
     private long queueCreateTime;
     private long queueUpdateTime;
+
 
     public String getQueueTheme() {
         return queueTheme;

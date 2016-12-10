@@ -7,5 +7,5 @@ package com.cn.queue.pojo;
  * Time:下午5:17
  */
 
-public class CustormerQueuePojo extends BaseQueuePojo  {
+public class CustormerQueuePojo extends BaseQueuePojo {
 }

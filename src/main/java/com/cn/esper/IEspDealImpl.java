@@ -7,6 +7,7 @@ package com.cn.esper;
  * Time:下午4:34
  */
 
-public interface EspDealImp {
+public interface IEspDealImpl {
+
 
 }
