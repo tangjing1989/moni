@@ -14,7 +14,6 @@ import com.espertech.esper.client.EPRuntime;
 
 public class initService {
 
-
     public static void main(String[] args) {
         //初始化esper引擎
         EspService esp = EspService.getInstance();
