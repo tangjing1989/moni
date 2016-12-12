@@ -10,14 +10,14 @@ import com.espertech.esper.client.*;
  * Time:上午9:01
  */
 
-public class EspService {
+public class EspCoreService {
 
-    public static EspService ep = new EspService();
+    public static EspCoreService ep = new EspCoreService();
     public static EPServiceProvider epServiceProvider;
 
-    public static EspService getInstance() {
+    public static EspCoreService getInstance() {
         if (null == ep) {
-            return new EspService();
+            return new EspCoreService();
         } else {
             return ep;
         }

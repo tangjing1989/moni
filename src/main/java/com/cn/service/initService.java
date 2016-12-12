@@ -1,6 +1,6 @@
 package com.cn.service;
 
-import com.cn.esper.EspService;
+import com.cn.esper.EspCoreService;
 import com.cn.queue.InitQueue;
 import com.cn.thread.InitThreadPool;
 import com.espertech.esper.client.EPRuntime;
@@ -16,7 +16,7 @@ public class initService {
 
     public static void main(String[] args) {
         //初始化esper引擎
-        EspService esp = EspService.getInstance();
+        EspCoreService esp = EspCoreService.getInstance();
         esp.handlerEpser();
         EPRuntime espRunTime = esp.epServiceProvider.getEPRuntime();
         //初始化消费者队列

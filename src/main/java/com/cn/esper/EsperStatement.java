@@ -1,6 +1,11 @@
 package com.cn.esper;
 
+import com.cn.esper.config.AlarmEnum;
 import com.espertech.esper.client.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ResourceBundle;
 
 /**
  * Created by tangj on 2016/12/11.
@@ -8,8 +13,16 @@ import com.espertech.esper.client.*;
 public class EsperStatement {
 
     public static void  createEsperStatement(EPServiceProvider epServiceProvider) {
-        String[] expressions = new String[2];
-        expressions[0] = "select warnTheme ,warnRule, warnNum, author, executiver From BaseEvent where warnNum >0";
+        List<String> expressions = new ArrayList<String>();
+
+        ResourceBundle configResouce = ResourceBundle.getBundle("epl_statement");
+
+       AlarmEnum[] alarmEnas=AlarmEnum.values();
+
+        for(AlarmEnum alarmEna :alarmEnas)
+        {
+            expressions.add(configResouce.getString(alarmEna.getWarnTheme()));
+        }
         for (String expression : expressions) {
             if(expression!=null){
             EPStatement epStatement = epServiceProvider.getEPAdministrator().createEPL(expression);
