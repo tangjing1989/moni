@@ -28,7 +28,8 @@ public class EsperStatement {
             EPStatement epStatement = epServiceProvider.getEPAdministrator().createEPL(expression);
             epStatement.addListener(new UpdateListener() {
                 public void update(EventBean[] arg0, EventBean[] arg1) {
-                    System.out.println("esper 处理结果: warnTheme:" + arg0[0].get("warnTheme")
+                    System.out.println("esper 处理结果:" +
+                              "|warnTheme:" + arg0[0].get("warnTheme")
                             + "|warnRule:" + arg0[0].get("warnRule")
                             + "|warnNum:" + arg0[0].get("warnNum")
                             + "|author:" + arg0[0].get("author")

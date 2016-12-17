@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/tx
+                           http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!-- enable component scanning (beware that this does not enable mapper
+        scanning!) -->
+    <context:property-placeholder location="classpath*:application.properties"/>
+
+    <context:annotation-config/>
+
+    <bean id="commonDataSource" class="org.apache.commons.dbcp.BasicDataSource" lazy-init="true" destroy-method="close">
+        <property name="url">
+            <value>${url}</value>
+        </property>
+        <property name="username">
+            <value>${username}</value>
+        </property>
+        <property name="password">
+            <value>${password}</value>
+        </property>
+        <property name="driverClassName">
+            <value>${driver}</value>
+        </property>
+        <property name="initialSize" value="1"/>
+        <property name="minIdle" value="1"/>
+        <property name="maxActive" value="100"/>
+        <property name="maxWait" value="60000"/>
+        <property name="timeBetweenEvictionRunsMillis" value="60000"/>
+        <property name="minEvictableIdleTimeMillis" value="300000"/>
+        <property name="validationQuery" value="SELECT 'x' FROM DUAL"/>
+        <property name="testWhileIdle" value="true"/>
+        <property name="testOnBorrow" value="false"/>
+        <property name="testOnReturn" value="false"/>
+        <property name="poolPreparedStatements" value="true"/>
+    </bean>
+
+    <!-- define the SqlSessionFactory -->
+    <bean id="etfSqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean" lazy-init="true">
+        <property name="dataSource" ref="commonDataSource"/>
+        <!-- 自动扫描entity目录, 省掉Configuration.xml里的手工配置 -->
+        <property name="mapperLocations"
+                  value="classpath:com/cn/dao/mapper/*.xml"/>
+    </bean>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer" lazy-init="true">
+        <property name="sqlSessionFactoryBeanName" value="etfSqlSessionFactory"/>
+        <property name="basePackage" value="cn.com.sge.gems.etf.dao.mapper"/>
+    </bean>
+
+    <!-- transaction manager, use JtaTransactionManager for global tx -->
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager" lazy-init="true">
+        <property name="dataSource" ref="commonDataSource"/>
+        <!--<qualifier value="primeton" />-->
+    </bean>
+
+    <!--&lt;!&ndash; 全注解方式 需加上@Transactional &ndash;&gt;-->
+    <!--<tx:annotation-driven transaction-manager="transactionManager"/>-->
+
+
+</beans>
