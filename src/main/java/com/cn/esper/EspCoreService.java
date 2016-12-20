@@ -12,7 +12,7 @@ import com.espertech.esper.client.*;
 
 public class EspCoreService {
 
-    public static EspCoreService ep = new EspCoreService();
+    public static EspCoreService ep =null;
     public static EPServiceProvider epServiceProvider;
 
     public static EspCoreService getInstance() {
@@ -24,11 +24,12 @@ public class EspCoreService {
     }
 
 
-    public static void handlerEpser() {
+    public  void handlerEpser() {
         Configuration config = new Configuration();
         config.addEventTypeAutoName("com.cn.esper.event");
         epServiceProvider = EPServiceProviderManager.getDefaultProvider(config);
-        EsperStatement.createEsperStatement(epServiceProvider);
+        EsperStatement esperStatement =EsperStatement.getInstance();
+        esperStatement.createEsperStatement(epServiceProvider);
 
     }
 

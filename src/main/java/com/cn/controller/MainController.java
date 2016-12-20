@@ -1,11 +1,13 @@
 package com.cn.controller;
 
-import com.cn.dao.TestMapper;
-import com.cn.web.imp.ITestImp;
+import com.cn.service.IInitService;
+import com.cn.service.IMainServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Describe:主函数
@@ -17,21 +19,29 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class MainController {
 
-    @Autowired
-    private TestMapper testMapper;
 
-    //@RequestMapping(value = "/", method = RequestMethod.GET)
-    //public String login() {
-       // return "login";
-    //}
-    @RequestMapping(value = "/index.htm", method = RequestMethod.GET)
-    public String index() {
+    @Autowired
+    private IInitService iInitService;
+    @Autowired
+    private IMainServices iMainServices;
+
+
+    @RequestMapping("/")
+    public String sum() {
         return "index";
     }
 
-    @RequestMapping("/")
-    public void sum()
-    {
-        System.out.println(testMapper.sum().toString());
+
+    @RequestMapping(value = "init.json")
+    public void init() {
+        iInitService.init();
     }
+
+    @RequestMapping("index.htm")
+    public String toIndex( Model model) {
+       String  text= iMainServices.queryMenu();
+        model.addAttribute("text","[{id: '1',menu: [{text: '系统管理',items:"+text+"}]}]");
+        return "index";
+    }
+
 }

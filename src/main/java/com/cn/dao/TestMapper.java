@@ -1,12 +1,12 @@
 package com.cn.dao;
 
 
-import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.stereotype.Repository;
 
 /**
  * Created by tangjing on 16/12/15.
  */
-@MapperScan()
+@Repository
 public interface TestMapper {
     Integer sum();
 }

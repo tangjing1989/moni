@@ -6,21 +6,20 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
 
+    <context:component-scan base-package="com.cn"/>
 
-    <!--指明 controller 所在包，并扫描其中的注解-->
-    <context:component-scan base-package="com.cn.controller"/>
+    <!-- 开启注解 -->
+    <mvc:annotation-driven/>
 
     <!-- 静态资源(js、image等)的访问 -->
     <mvc:default-servlet-handler/>
 
-    <!-- 开启注解 -->
-    <mvc:annotation-driven/>
-    <!--<mvc:resources location="assets/css/" mapping="css/**"/>-->
-    <!--<mvc:resources location="assets/js/" mapping="js/**"/>-->
-    <!--<mvc:resources location="assets/font/" mapping="font/**"/>-->
-    <!--<mvc:resources location="assets/images/" mapping="images/**"/>-->
-    <!--<mvc:resources location="assets/avatars/" mapping="avatars/**"/>-->
+    <mvc:resources location="assets/css/" mapping="assets/css/**"/>
+    <mvc:resources location="assets/img/" mapping="assets/img/**"/>
+    <mvc:resources location="assets/js/" mapping="assets/js/**"/>
 
+
+    <bean class="com.utils.SpringContextHolder"/>
 
     <!--ViewResolver 视图解析器-->
     <!--用于支持Servlet、JSP视图解析-->
@@ -31,6 +30,7 @@
     </bean>
 
     <import resource="classpath:mvc-mybatis.xml"/>
+
 
 
 </beans>

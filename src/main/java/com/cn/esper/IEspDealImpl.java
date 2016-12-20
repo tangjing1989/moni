@@ -1,5 +1,9 @@
 package com.cn.esper;
 
+import com.cn.esper.event.BaseEvent;
+
+import java.sql.SQLException;
+
 /**
  * Describe:esper处理
  * User:tangjing
@@ -10,5 +14,5 @@ package com.cn.esper;
 public interface IEspDealImpl {
 
 
-
+    void add(BaseEvent pojo) throws SQLException;
 }
